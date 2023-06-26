@@ -1,0 +1,139 @@
+#!/usr/bin/env bash
+
+# THIS IS DESIGNED FOR THE 256 & 512GB STEAM DECK MODELS
+# FURTHER DOWN THE LINE SUPPORT WILL BE ADDED FOR THE BASE
+# MODEL, FOR NOW JUST EDIT THE PARTITION SECTION ;)
+
+# RUN THIS AS ROOT FROM THE MINIMAL GENTOO ISO!!
+
+mkdir -p /mnt/gentoo
+mkdir /deck-install
+cp deck-install-p2 /deck-install/
+
+# Partition The SSD
+sgdisk -Z /dev/nvme0n1
+sgdisk -o /dev/nvme0n1
+sgdisk -n 1::+1G -t 1:ef02 /dev/nvme0n1
+sgdisk -n 2::+13G -t 2:8200 /dev/nvme0n1
+sgdisk -n 3:: -t 3:8300 /dev/nvme0n1
+
+# Create The File Systems
+mkfs -t vfat -F 32 /dev/nvme0n1p1
+mkfs -t btrfs -L btrfsroot /dev/nvme0n1p3
+mkswap /dev/nvme0n1p2
+
+# Mount For Subvol Creation
+mount /dev/nvme0n1p3 /mnt/gentoo
+
+# Create The Subvolumes
+cd /mnt/gentoo
+btrfs subvol create root
+btrfs subvol create home
+btrfs subvol create snapshots
+btrfs subvol create var
+
+# Unmount btrfsroot & Remount Subvolumes
+cd ..
+umount -l gentoo
+mount -o defaults,noatime,compress=zstd:3,autodefrag,subvol=root /dev/nvme0n1p3 /mnt/gentoo
+
+# Create Dirs For Mounts
+mkdir -p /mnt/gentoo/boot
+mount /dev/nvme0n1p1 /mnt/gentoo/boot
+cd /mnt/gentoo
+mkdir .snapshots home root var
+
+# Mount All Subvolumes
+mount -o defaults,relatime,compress=zstd:3,autodefrag,subvol=home /dev/nvme0n1p3 /mnt/gentoo/home
+mount -o defaults,relatime,compress=zstd:3,autodefrag,subvol=snapshots /dev/nvme0n1p3 /mnt/gentoo/.snapshots
+mount -o defaults,relatime,compress=zstd:3,autodefrag,subvol=var /dev/nvme0n1p3 /mnt/gentoo/var
+
+# Get Stage3 Tarball
+curl -LO https://bouncer.gentoo.org/fetch/root/all/releases/amd64/autobuilds/20230604T170201Z/stage3-amd64-openrc-20230604T170201Z.tar.xz
+
+# Uncompress & Remove Tarball
+tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
+rm stage3-amd64-openrc-20230604T170201Z.tar.xz
+
+# Configure Make.conf
+cat << 'EOF' > /mnt/gentoo/etc/portage/make.conf
+# These settings were set by the catalyst build script that automatically
+# built this stage.
+# Please consult /usr/share/portage/config/make.conf.example for a more
+# detailed example.
+COMMON_FLAGS="-march=native -O2 -pipe"
+CFLAGS="${COMMON_FLAGS}"
+CXXFLAGS="${COMMON_FLAGS}"
+FCFLAGS="${COMMON_FLAGS}"
+FFLAGS="${COMMON_FLAGS}"
+
+MAKEOPTS="-j7"
+FEATURES="candy fixlafiles unmerge-orphans parallel-fetch parallel-install"
+
+# Usual Hardware
+USE="$USE pulseaudio pipewire"                          # Audio Managers
+USE="$USE bluetooth wifi networkmanager"                # Wireless
+USE="$USE wayland -X -xinerama"                         # Display
+USE="$USE vulkan opengl -vesa -nvidia -nouveau"         # Display Drivers
+USE="$USE vaapi vdpau"                                  # HW Video
+USE="$USE wiimote gamepad joystick"                     # HW Gaming
+USE="$USE hddtemp lm-sensors"                           # Sensors
+USE="$USE v4l screencast gstreamer ffmpeg theora"       # Video Extras
+USE="$USE zip zstd lto pgo dbus udev libnotify"         # Misc
+USE="$USE gtk qt5 qt6"                                  # GTK & QT
+USE="$USE bash-completion unicode policykit udisks"     # Misc Extended
+
+USE="$USE -cups -dvd -cdr -selinux -kde -gnome -plasma" # We No Want
+USE="$USE -virtualbox -webengine -qtwebengine"          # These Things
+
+# Multimedia Formats
+USE="$USE x264 x265 heif"                               # Proper Format Support
+USE="$USE opus"                                         # Audio
+USE="$USE mtp rtmp mms"                                 # Streaming
+USE="$USE jpeg2k openexr postscript webp wmf xpmopenexr"# GIMP Related Formats
+USE="$USE widevine"                                     # DRM Support
+USE="$USE midi fluidsynth"                              # Older Game Audio
+USE="$USE vpx"                                          # HTML5 Video Support
+USE="$USE fat hfs ntfs udf btrfs"                       # File Systems 
+
+
+ACCEPT_LICENSE="*"
+ACCEPT_KEYWORDS="amd64"
+
+GRUB_PLATFORMS="efi-64"
+
+INPUT_DEVICES="synaptics libinput evdev joystick"
+VIDEO_CARDS="amdgpu radeon radeonsi"
+
+LC_MESSAGES=C.utf8
+
+# Using Just US Mirrors
+GENTOO_MIRRORS="http://www.gtlib.gatech.edu/pub/gentoo rsync://rsync.gtlib.gatech.edu/gentoo https://mirrors.rit.edu/gentoo/ http://mirrors.rit.edu/gentoo/ ftp://mirrors.rit.edu/gentoo/ rsync://mirrors.rit.edu/gentoo/ http://gentoo-mirror.flux.utah.edu/"
+
+EOF
+
+
+# mirrorselect -i -o >> /mnt/gentoo/etc/portage/make.conf
+
+# Setup Gentoo Ebuild Repository
+mkdir --parents /mnt/gentoo/etc/portage/repos.conf
+cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
+
+# Get DNS
+cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
+
+# Mount Necessary File Systems
+mount --types proc /proc /mnt/gentoo/proc
+mount --rbind /sys /mnt/gentoo/sys
+mount --rbind /dev /mnt/gentoo/dev
+mount --bind /run /mnt/gentoo/run
+
+# Ensure /dev/shm Be Workin'
+test -L /dev/shm && rm /dev/shm && mkdir /dev/shm
+mount --types tmpfs --options nosuid,nodev,noexec shm /dev/shm
+chmod 1777 /dev/shm /run/shm
+
+cp /deck-install/deck-install-p2 /mnt/gentoo
+
+# Chroot
+chroot /mnt/gentoo /bin/bash ./deck-install-p2

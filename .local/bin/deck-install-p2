@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+
+source /etc/profile
+export PS1="(chroot) ${PS1}"
+
+# Install Ebuild Repo Snapshot
+emerge-webrsync
+
+# List Available Profiles
+eselect profile list
+read -p "What Number Profile?: " eprofile
+eselect profile set $eprofile
+
+# Update The System
+emerge --ask --verbose --update --deep --newuse @world
+
+# Setup CPU Flags
+emerge --ask app-portage/cpuid2cpuflags
+echo "*/* $(cpuid2cpuflags)" > /etc/portage/package.use/00cpu-flags
+
+# Set Timezone
+read -p "Enter Timezone (America/Chicago): " gtime
+echo "$gtime" > /etc/timezone
+emerge --config sys-libs/timezone-data
+
+# Set Localization
+echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
+locale-gen
+eselect locale list
+read -p "Which Number Locale?: " glocale
+eselect locale set $glocale
+
+# Reload Env
+env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
+
+# Setup FSTAB
+cat << 'EOF' > /etc/fstab
+# <fs>           <mountpoint>    <type>  <opts>                                                                      <dump/pass>
+
+shm              /dev/shm        tmpfs   nodev,nosuid,noexec                                                         0 0
+
+/dev/nvme0n1p3   /               btrfs   rw,noatime,compress=zstd:3,ssd,space_cache=v2,autodefrag,subvol=root        0 0
+/dev/nvme0n1p3   /home           btrfs   rw,noatime,compress=zstd:3,ssd,space_cache=v2,autodefrag,subvol=home        0 0
+/dev/nvme0n1p3   /.snapshots     btrfs   rw,noatime,compress=zstd:3,ssd,space_cache=v2,autodefrag,subvol=snapshots   0 0
+/dev/nvme0n1p3   /var            btrfs   rw,noatime,compress=zstd:3,ssd,space_cache=v2,autodefrag,subvol=var         0 0
+/dev/nvme0n1p2   none            swap    sw                                                                          0 0
+/dev/nvme0n1p1   /boot           vfat    noauto,noatime                                                              0 2
+
+EOF
+
+# Emerge Microcode & Firmware
+emerge --ask sys-kernel/linux-firmware
+
+# Get The Kernel Sources
+emerge --ask sys-kernel/gentoo-sources
+eselect kernel list
+read -p "Which Number Kernel Source?: " gkernel
+eselect kernel set gkernel
+
+# Setup & Build Custom Kernel
+
+# Set Hostname
+read -p "One Word Lowercase Hostname: " ghostname
+echo $ghostname > /etc/hostname
+
+# Setup Hosts File
+cat << 'EOF' > /etc/hosts
+# This defines the current system and must be set
+127.0.0.1     $ghostname.homenetwork $ghostname localhost
+::1           localhost
+
+EOF
+
+# Set A Root Password
+passwd
+
+# Cron Daemon
+emerge --ask sys-process/cronie
+rc-update add cronie default
+
+# File Indexing
+emerge --ask sys-apps/mlocate
+
+# Setup SSH
+rc-update add sshd default
+
+echo "Done For Now! Don't Forget To Check On Things & Build The Kernel!"

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+pactl set-sink-volume @DEFAULT_SINK@ -5%
+sleep 0.5
+notify-send -t 925 "%$( pamixer --get-volume )"
