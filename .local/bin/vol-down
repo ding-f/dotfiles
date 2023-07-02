@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
-pactl set-sink-volume @DEFAULT_SINK@ -5%
-sleep 0.5
-notify-send -t 925 "%$( pamixer --get-volume )"
+if [[ $(pamixer --get-volume) == 0 ]]
+then
+	notify-send -t 3000 "🔈 You Know The Mute Button Exists Right?"
+else
+	pactl set-sink-volume @DEFAULT_SINK@ -5%
+fi

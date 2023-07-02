@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CPUTemp=$(sensors | grep 'edge:' | awk '{ print substr ($0, 12 ) }')
+CPUTemp=$(sensors | grep 'edge:' | awk '{ print substr ($0, 16 ) }')
 
 notify-send -t 8000 "$(
 free -m | awk 'NR==2{printf "🐏 Usage: %s/%sMB (%.2f%%)\n", $3,$2,$3*100/$2 }'

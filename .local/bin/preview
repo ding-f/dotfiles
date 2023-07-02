@@ -21,7 +21,5 @@ case "$1" in
     *.tar) tar -tvf "$1";;
     *.rar) unrar l "$1";;
     *.7z) 7z l "$1";;
-    #*.html|*.xml) w3m -dump "$1";;
-    *.zsh*|*.bash*|*.git*) pistol "$1";;
     *) handle "$1" ;;
 esac

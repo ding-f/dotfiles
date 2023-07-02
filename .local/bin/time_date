@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-notify-send -t 3500 "$(date '+%a %b %e %r')"
+notify-send -t 4500 "$(date '+%a %b %e %l%p')"

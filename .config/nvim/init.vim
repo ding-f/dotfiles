@@ -5,6 +5,7 @@
 :set smarttab
 :set softtabstop=4
 :set mouse=a
+:set clipboard=unnamedplus
 :set hidden
 :syntax on
 
@@ -19,7 +20,7 @@ Plug 'https://github.com/embark-theme/vim' " Embark Theme (Similar To Catppuccin
 Plug 'https://github.com/vim-airline/vim-airline-themes' " Collection Of Themes
 """" Run This First! - curl -sL install-node.vercel.app/lts | sudo bash - To Install Nodejs 
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Code Completion
-" Run These Commands To Setup Language Servers
+" Run These Commands To Setup Language Servers (Can Be Ran Space Seperated As One Command)
 " :CocInstall coc-sh
 " :CocInstall coc-clangd
 " :CocInstall coc-html
@@ -33,9 +34,9 @@ set encoding=UTF-8
 
 call plug#end()
 
-nnoremap <C-f> :NERDTreeToggle<CR>
-nnoremap <C-n> :vnew<CR>
-nnoremap <C-t> :tabe<CR>
+nnoremap <C-f>		:NERDTreeToggle<CR>
+nnoremap <C-n>		:vnew<CR>
+nnoremap <C-t>		:tabe<CR>
 nnoremap <PageUp>   :bprevious<CR>
 nnoremap <PageDown> :bnext<CR>
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
@@ -49,14 +50,14 @@ if !exists('g:airline_symbols')
 endif
 
 " airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
+"let g:airline_left_sep = ''
+"let g:airline_left_alt_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_right_alt_sep = ''
+"let g:airline#extensions#tabline#left_sep = ''
+"let g:airline#extensions#tabline#left_alt_sep = ''
+"let g:airline#extensions#tabline#right_sep = ''
+"let g:airline#extensions#tabline#right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
