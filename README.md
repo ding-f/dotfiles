@@ -30,6 +30,7 @@ I do want to point out that my config is **not** tailored to suit a large number
 - pipewire *Pipewire-Pulse* (Audio)
 - pavucontrol, pactl, pamixer (Audio Control)
 - zsh (User Shell)
+- imv (Image Viewer)
 - obs (Streaming/Recording Software)
 - [wl-clipboard](https://github.com/bugaevc/wl-clipboard) (Wayland Clipboard Tools)
 - [ydotool](https://github.com/ReimuNotMoe/ydotool) (Command Line Automation)

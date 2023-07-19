@@ -2,7 +2,7 @@ palette = "catppuccin_macchiato"
 
 [character]
 # Note the use of Catppuccin color 'maroon'
-success_symbol = "[[♥](green) ❯](maroon)"
+success_symbol = "[[ ](mauve) ❯](blue)"
 error_symbol = "[❯](red)"
 vicmd_symbol = "[❮](green)"
 

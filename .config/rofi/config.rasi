@@ -1,5 +1,5 @@
 configuration {
-	modi:					"run,drun";
+	modi:					"run,filebrowser,drun";
 	terminal:				"alacritty";
     show-icons:				true;
     icon-theme:				"Reversal-purple";
@@ -7,6 +7,7 @@ configuration {
 	drun-display-format:	"{icon} {name}";
 	display-drun:			"   Apps ";
     display-run:			"   Run ";
+    display-filebrowser:	"   File ";
     display-Network:		" 󰤨  Network";
     disable-history:		false;
 	sidebar-mode:			true;
