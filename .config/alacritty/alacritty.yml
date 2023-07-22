@@ -24,7 +24,7 @@ scrolling:
 
 font:
   normal:
-    family: Cascadia Code
+    family: Cascadia Mono PL
     style: Regular
   size: 14
   offset:

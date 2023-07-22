@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # Preview script built for use with lf, fzf, and vifm
 
 handle() {

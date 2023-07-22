@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+ # Sync the overlays or Gentoo Repo if you don't have "eselect-repository"
+emaint sync -a || emerge --sync --quiet
+# Run emerge in pretend mode to get the list of available updates
+update_output=$(emerge --pretend --update --quiet @world )
+# Count the number of lines in the output that start with "[ebuild"
+update_count=$(echo "$update_output" | grep -c "^\[ebuild")
+# Output the update count
+echo "$update_count"
