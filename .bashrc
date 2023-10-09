@@ -1,39 +1,41 @@
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
-# Setup Environment Variables
-export STARSHIP_CONFIG=$HOME/.config/starship.toml
+export PATH="$PATH:/usr/local/bin:$HOME/.local/bin:/usr/libexec"
 export SCRIPTDIR=$HOME/.local/share/scriptdeps
-export PATH=$PATH:$HOME/.local/bin:$HOME/.cargo/bin
-export EDITOR=nvim
 
-# Set Environment Aliases
-alias ls='lsd -l'
-alias la='lsd -al'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias vifm='vifmrun'
-alias vim='nvim'
-alias svim='sudo nvim'
-alias chmod='sudo chmod'
-alias cleanup='sudo emerge --depclean'
-alias emerge='sudo emerge -a'
-alias esync='sudo emaint -a sync'
-alias uninstall='sudo emerge --deselect'
-alias update='sudo emerge -auDN @world'
-alias econf='sudo dispatch-conf'
-alias reboot='sudo reboot'
-alias shutdown='sudo shutdown now'
-alias rc-update='sudo rc-update'
-alias grep='grep --color=auto'
-alias buildsuck='sudo make install clean && rm config.h'
-alias mount='sudo mount'
-alias umount='sudo umount'
+# don't put duplicate lines or lines starting with space in the history.
+HISTCONTROL=ignoreboth
 
-# Starship Prompt
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=2000
+HISTFILESIZE=5000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# system aliases
+alias vim="nvim"
+alias ls="lsd -l"
+alias la="lsd -al"
+alias ..="cd .."
+
+# setup the starship prompt
 eval "$(starship init bash)"
 
-# Setup Rustup Environment
-. "$HOME/.cargo/env"
+# enable programmable completion features
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
 
-squirtle

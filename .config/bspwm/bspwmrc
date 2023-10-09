@@ -1,0 +1,28 @@
+#! /bin/sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+polybar-bspwm &
+
+#### MONITORS ####
+for monitor in $(bspc query -M)
+do
+    # set the workspaces on each monitor to 1-9
+    bspc monitor $monitor -d 1 2 3 4 5 6 7 8 9
+    #polybar hidden when fullscreen for vlc, youtube, mpv ...
+    xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_$monitor)
+done
+
+bspc config border_width         2
+bspc config window_gap           10
+
+bspc config split_ratio          0.5
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config single_monocle       false
+bspc config click_to_focus       true
+
+#### Dracula Theme ####
+bspc config normal_border_color "#44475a"
+bspc config focused_border_color "#bd93f9"
+bspc config active_border_color "#ff79c6"
+bspc config presel_feedback_color "#6272a4"

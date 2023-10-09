@@ -1,22 +1,22 @@
-:set number
-:set autoindent
-:set tabstop=4
-:set shiftwidth=4
-:set smarttab
-:set softtabstop=4
-:set mouse=a
-:set clipboard=unnamedplus
-:set hidden
-:set encoding=UTF-8
-:syntax on
+set number
+set autoindent
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set softtabstop=4
+set mouse=a
+set clipboard=unnamedplus
+set hidden
+set encoding=UTF-8
+syntax on
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'Mofiqul/dracula.nvim'
 Plug 'https://github.com/preservim/nerdtree' " NerdTree
 Plug 'https://github.com/tpope/vim-commentary' " Comment Out With gcc & Uncomment With gcgc
 Plug 'https://github.com/ap/vim-css-color' " CSS Color Preview
 Plug 'https://github.com/ryanoasis/vim-devicons' " Developer Icons
 Plug 'https://github.com/vim-airline/vim-airline' " Status Bar
-Plug 'https://github.com/embark-theme/vim' " Embark Theme (Similar To Catppuccin)
 Plug 'https://github.com/vim-airline/vim-airline-themes' " Collection Of Themes
 """" Run This First! - curl -sL install-node.vercel.app/lts | sudo bash - To Install Nodejs 
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Code Completion
@@ -69,4 +69,5 @@ endif
 " let g:airline_symbols.readonly = ''
 " let g:airline_symbols.linenr = ''
 
-let g:airline_theme = 'bubblegum'
+let g:airline_theme = 'base16_dracula'
+colorscheme dracula

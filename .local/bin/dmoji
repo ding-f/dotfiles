@@ -3,7 +3,7 @@
 # The famous "get a menu of emojis to copy" script.
 
 # Get user selection via wofi from emoji file.
-chosen=$(cat $SCRIPTDIR/emoji | rofi -dmenu | awk '{print $1}' )
+chosen=$(cat $HOME/.local/share/scriptdeps/emoji | rofi -dmenu | awk '{print $1}')
 
 # Exit if none chosen.
 [ -z "$chosen" ] && exit
@@ -11,8 +11,8 @@ chosen=$(cat $SCRIPTDIR/emoji | rofi -dmenu | awk '{print $1}' )
 # If you run this command with an argument, it will automatically insert the
 # character. Otherwise, show a message that the emoji has been copied.
 if [ -n "$1" ]; then
-	ydotool type "$chosen"
+	xdotool type "$chosen"
 else
-  printf "$chosen" | wl-copy
+  printf "$chosen" | xclip -selection clipboard
 	notify-send "'$chosen' copied to clipboard." &
 fi

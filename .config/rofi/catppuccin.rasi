@@ -1,12 +1,12 @@
 * {
-    bg-col:				#24273a80;
-    bg-col-solid:		#24273a;
-    blue:				#8aadf4;
-    fg-col:				#cad3f5;
+    bg-col:				#282a3680;
+    bg-col-solid:		#282a36;
+    blue:				#bd93f9;
+    fg-col:				#f8f8f2;
     clear:				#00000000;
 
     width:				600;
-    font:				"Ubuntu Nerd Font 14";
+    font:				"JetBrainsMono Nerd Font 14";
 }
 
 window {

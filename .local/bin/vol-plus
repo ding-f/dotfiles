@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ $(pamixer --get-volume) == *100* ]]
+if [[ $(pamixer --get-volume) > 100 ]]
 then
 	pactl set-sink-volume @DEFAULT_SINK@ 100%
 	notify-send -t 3000 "🔊 Seriously You Fucking Deaf?"

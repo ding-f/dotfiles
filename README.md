@@ -1,48 +1,37 @@
 # Useful Links
-1. [The Wallpaper I Use](https://www.reddit.com/r/wallpapers/comments/10lq6wr/cumulonimbus_4k_3840x2160_by_ai/)
+1. [Theme I Currently Use](https://draculatheme.com/)
 2. [Script Directory](.local/bin)
 3. [Hyprland Config](.config/hypr/hyprland.conf)
+4. [Cursor Theme](https://www.gnome-look.org/p/1215613)
 
 # About My System
-![](.config/demo.gif)
+![](.config/wallpaper.png)
 
-This repository is my personal dotfiles. Dotfiles are the files responsible for customization on your Unix(-like) system. This exists so that anyone can see how I have customized my system. The customization and configuration files on Unix(-like) are referred to are dotfiles, because typically they begin with a period.
+This repository is my personal dotfiles. Dotfiles are the files responsible for customization on your Unix(-like) system. This exists so that anyone can see how I have customized my system. The customization and configuration files on Unix(-like) systems are referred to are dotfiles, because typically they begin with a period.
 
-I am currently running vanilla Arch right now with Wayland. As you can see below I have started using Hyprland and have truly fallen in love with it. It is a feature rich tiling window manager that is **very** bleeding edge. *Please keep that in mind.*
+I was running vanilla with Wayland, most of that configuration is still here. Now I am running Debian 12 with bspwm.
 
 I do want to point out that my config is **not** tailored to suit a large number of people. Most likely you will need to change most configs to match monitor setups, personal preference, and directory structure.
 
 ## What I Use
-- [hyprland *hyprland-git*](https://github.com/hyprwm/Hyprland) (Window Manager)
-- [hyprprop](https://github.com/vilari-mickopf/hyprprop) (Xprop For Hyprland/Wayland)
-- [tofi](https://github.com/philj56/tofi) (Program Launcher)
-- kitty (Terminal)
-- pcmanfm-qt/ranger (File Manager)
-- rhythmbox (Music Player)
-- [hyprpaper](https://github.com/hyprwm/hyprpaper) (Setting Wallpaper)
-- mpv (Video Player)
+- [bspwm](https://github.com/baskerville/bspwm) (Window Manager)
+- [nitrogen](https://github.com/l3ib/nitrogen) (Wallpaper Setter)
+- [rofi](https://github.com/davatorium/rofi) (Program Launcher)
+- [kitty](https://github.com/kovidgoyal/kitty) (Terminal)
+- [pcmanfm](https://github.com/lxde/pcmanfm) (File Manager)
+- [mpv](https://mpv.io/) (Video Player)
 - firefox (Web Browsing)
-- kdenlive (Video Editing)
-- bashtop (System Monitoring)
-- neovim (Terminal Text Editor / IDE)
-- mako (Notifications)
-- btrfs (File System)
-- pipewire *Pipewire-Pulse* (Audio)
-- pavucontrol, pactl, pamixer (Audio Control)
-- zsh (User Shell)
-- imv (Image Viewer)
+- kdenlive / Davinci Resolve (Video Editing)
+- [btop](https://github.com/aristocratos/btop) (System Monitoring)
+- [neovim](https://github.com/neovim/neovim) (Text Editor / IDE)
+- [dunst](https://github.com/dunst-project/dunst) (Notifications)
+- pulseaudio (Audio)
+- pavucontrol (Audio Control)
+- bash (Shell)
 - obs (Streaming/Recording Software)
-- [wl-clipboard](https://github.com/bugaevc/wl-clipboard) (Wayland Clipboard Tools)
-- [ydotool](https://github.com/ReimuNotMoe/ydotool) (Command Line Automation)
-- [SF Pro Display](https://aur.archlinux.org/packages/apple-fonts) & [SF Mono Nerd Font](https://github.com/epk/SF-Mono-Nerd-Font) (System & Terminal Font)
-- yay (AUR Helper)
 - qt5ct,Kvantum,lxappearance (Theming)
 
-*Not all programs that I have listed here necessarily have configuration files stored here. Most will, but not all. This is just a mostly complete list of the programs I use.*
-
-## What I Do Not Use
-- login/display managers (.zprofile Auto Load Hyprland)
-- Xorg
+*Not all programs that I have listed here necessarily have configuration files stored here. They all should, but I can make a mistake. This is just a mostly complete list of the programs I use.*
 
 # Why Am I Using Linux?
 A totally reasonable question. I have used and bounced from one OS to another quite a bit. While I could use the argument that I want to be competent in all major ones that just isn't the case. I am very curious, that's probably the straightest answer I can give.
@@ -58,13 +47,12 @@ My list of combinations:
 
     - Super + HJKL = Move Focus
     - Super + Shift + HJKL = Move Window
-    - Super + Shift + f = Floating Window
-    - Super + i = Toggle Split
-    - Super + a = Toggle Fullscreen
+    - Super + Shift + f = Float Window
+    - Super + Shift + t = Tile Window
     - Super + Return = Open Kitty
-    - Super + Shift + Return = Open Tofi (Program Launcher)
+    - Super + Shift + Return = Open Program Launcher
     - Super + w = Open Firefox
-    - Super + f = Open PCManFM-QT
+    - Super + f = Open File Browser
     - Super + g = Open Gimp
     - Super + d = Open Discord
     - Super + o = Open OBS

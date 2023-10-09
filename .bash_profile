@@ -2,10 +2,5 @@ if [[ -f ~/.bashrc ]] ; then
 	. ~/.bashrc
 fi
 
-# Setup Rustup Environment
-. "$HOME/.cargo/env"
-
-# Run Hyprland After Login
-if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-    dbus-run-session Hyprland
-fi
+# Created by `pipx` on 2023-10-08 10:00:54
+export PATH="$PATH:/home/zaney/.local/bin"
