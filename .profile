@@ -15,6 +15,3 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
-
-# Environment Variables
-QT_QPA_PLATFORMTHEME=qt5ct

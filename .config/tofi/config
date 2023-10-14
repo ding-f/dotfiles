@@ -6,5 +6,34 @@
 # ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚══════╝
 # Dotfiles circa 2023
 
-preload = ~/.config/wallpaper.jpg
-wallpaper = ,~/.config/wallpaper.jpg
+# Font
+font = JetBrainsMono Nerd Font
+font-size = 16
+
+# Window Style
+horizontal = true
+anchor = top
+width = 100%
+height = 42
+outline-width = 0
+border-width = 0
+min-input-width = 120
+result-spacing = 30
+padding-top = 5
+padding-bottom = 0
+padding-left = 20
+padding-right = 0
+
+# Prompt Style
+prompt-text = "Run > "
+prompt-padding = 5
+
+# Dracula Theme
+background-color = #282a36
+text-color = #f8f8f2
+input-color = #50fa7b
+selection-color = #bd93f9
+selection-match-color = #50fa7b
+
+clip-to-padding = false
+require-match = false

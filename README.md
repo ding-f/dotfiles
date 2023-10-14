@@ -9,14 +9,14 @@
 
 This repository is my personal dotfiles. Dotfiles are the files responsible for customization on your Unix(-like) system. This exists so that anyone can see how I have customized my system. The customization and configuration files on Unix(-like) systems are referred to are dotfiles, because typically they begin with a period.
 
-I was running vanilla with Wayland, most of that configuration is still here. Now I am running Debian 12 with bspwm.
+I currenty run Arch with Hyprland. I couldn't recommend it enough. I am currently using this setup on my laptop (Intel OEM Whitebook) & Ryzen desktop.
 
-I do want to point out that my config is **not** tailored to suit a large number of people. Most likely you will need to change most configs to match monitor setups, personal preference, and directory structure.
+I do want to point out that my config was **not** tailored to suit a large number of people originally. However, I have put a lot of work into automating a lot of the setup process if you would like to repliate my system configuration.
 
 ## What I Use
-- [bspwm](https://github.com/baskerville/bspwm) (Window Manager)
-- [nitrogen](https://github.com/l3ib/nitrogen) (Wallpaper Setter)
-- [rofi](https://github.com/davatorium/rofi) (Program Launcher)
+- [Hyprland](https://github.com/baskerville/bspwm) (Window Manager/Compositor)
+- [Hyprpaper](https://github.com/l3ib/nitrogen) (Wallpaper)
+- [tofi](https://github.com/davatorium/rofi) (Program Launcher)
 - [kitty](https://github.com/kovidgoyal/kitty) (Terminal)
 - [pcmanfm](https://github.com/lxde/pcmanfm) (File Manager)
 - [mpv](https://mpv.io/) (Video Player)
@@ -29,19 +29,35 @@ I do want to point out that my config is **not** tailored to suit a large number
 - pavucontrol (Audio Control)
 - bash (Shell)
 - obs (Streaming/Recording Software)
-- qt5ct,Kvantum,lxappearance (Theming)
+- qt5ct,Kvantum,nwg-look (Theming)
 
-*Not all programs that I have listed here necessarily have configuration files stored here. They all should, but I can make a mistake. This is just a mostly complete list of the programs I use.*
+# Full Install
+Here is all you will need to run after you have installed Arch Linux & log in as your user:
 
-# Why Am I Using Linux?
-A totally reasonable question. I have used and bounced from one OS to another quite a bit. While I could use the argument that I want to be competent in all major ones that just isn't the case. I am very curious, that's probably the straightest answer I can give.
-Linux is where I have come back again and again, particularly Arch Linux. The availability of packages, AUR, and overall reliable documentation is just fantastic. Not to mention I do very much enjoy the process and feeling of crafting your own system with only the packages you deem necessary. Now that isn't to say I don't enjoy other distros, I do, but Arch has just become my home.
+Please go into your /etc/pacman.conf file and uncomment ParallelDownloads = 5 and add ILoveCandy under it. Also make sure you uncomment the multilib repository. Keep in mind I am leaving out hardware specific packages. So make sure you have already installed your graphics drivers and such. I also use networkmanager and assume you will aswell.
 
-### So Bye-Bye OpenBSD??
-Hopefully not forever, but for now yes. I am very much enjoying the features, reliability *(surprisingly)*, and speed of hyprland-wayland-pipewire. These are things that are just not going to be available on OpenBSD for quite a while. Or at the very least much more unstable than their Linux counter-parts. Things change though so hopefully this line of text will age like milk.
-You can still find my OpenBSD guides [here](https://gitlab.com/Zaney/openbsd-guides) please do keep in mind that it has been a while since I have used OpenBSD as my desktop OS so there may be changes needed.
+'''
+sudo pacman -S ydotool wl-clipboard hyprland xdg-desktop-portal-hyprland socat mpv firefox kitty hyprpaper pcmanfm btop vim dunst pavucontrol pipewire-pulse pipewire wireplumber obs-studio qt5ct kvantum git waybar cmatrix lolcat yadm polkit-kde-agent gimp blender steam libnotify terminus-font
+echo FONT=ter-u28n >> /etc/vconsole.conf
+git clone https://aur.archlinux.org/nwg-look.git
+cd nwg-look
+makepkg -si
+cd ..
+rm -rf nwg-look
+git clone https://aur.archlinux.org/tofi.git
+cd tofi
+makepkg -si
+cd ..
+rm -rf tofi
+git clone https://aur.archlinux.org/webcord.git
+cd webcord
+makepkg -si
+cd ..
+rm -rf webcord
 
-## Key Bindings:
+'''
+
+# Key Bindings:
 
 My list of combinations:
 
