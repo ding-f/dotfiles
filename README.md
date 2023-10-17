@@ -21,6 +21,7 @@ I do want to point out that my config was **not** tailored to suit a large numbe
 - [pcmanfm](https://github.com/lxde/pcmanfm) (File Manager)
 - [mpv](https://mpv.io/) (Video Player)
 - [firefox](https://www.mozilla.org/en-US/firefox/new/) (Web Browsing)
+- [Webcord](https://github.com/SpacingBat3/WebCord) (Rec Podcasts & Fun)
 - [kdenlive](https://kdenlive.org/en/) (Video Editing)
 - [btop](https://github.com/aristocratos/btop) (System Monitoring)
 - [vim](https://www.vim.org/) (Text Editor / IDE)
@@ -33,18 +34,48 @@ I do want to point out that my config was **not** tailored to suit a large numbe
 - [0 A.D](https://play0ad.com/) (Best Open Source Game)
 - qt5ct,Kvantum,nwg-look (Theming)
 
-# Full Install
+## Features
+
+1. Simple wallpaper that comes with the config can match with many different dark or light colorschemes. It also is high resolution making it fine for any kind of monitor config you throw at it. Not to mention its a sleek, modern, abstract design that just screams beauty.
+2. Using waybar and tofi for the top bar and program launcher gives a sleek full featured user experience with very little performance impact. The bar is setup for laptops with wifi and battery modules, including all that one would expect from a bar. The tofi and waybar configuration is designed to give you a dwm feel without having to patch dwm, dmenu, etc! 😉
+3. Neofetch is a great program, however it can be slow. So this setup includes an alias to the program fastfetch. Which is meant to be a faster alternative to neofetch.
+4. All of the theming comes together with the dotfiles. If you like the theme I use for programs no need to set them all up individually. Besides how could you not love 🧛 Dracula? 
+5. Many great scripts are included. Like the script for packagecount in the bar, the emoji selection script, and many more. 
+6. Not only do you have great window animations, but the borders for your windows are an animated gradient. 
+
+### Vim Configuration
+
+I needed to put this in its own little section just because of how proud I am of this vimrc. **This is a fully automated Vim configuration file.** It will automatically download vim-plug, the plugins and then install all of the language servers in the config file. 
+
+I think you'll find a moderately slim Vim configuration with all the important features of any text editor that you'd want to code or configure the day away in. 
+
+Shortcuts:
+- Ctrl + f = Toggles NERDtree
+- Press t on a file in NERDtree to open in new tab, s for vertical split
+- Press ii quickly to get to normal mode
+
+## Full Setup Guide
 Here is all you will need to run after you have installed Arch Linux & log in as your user:
 
-Please go into your /etc/pacman.conf file and uncomment ParallelDownloads = 5 and add ILoveCandy under it. Also make sure you uncomment the multilib repository. Keep in mind I am leaving out hardware specific packages. So make sure you have already installed your graphics drivers and such. I also use networkmanager and assume you will aswell.
+*Please Note:* This is assuming that your doing this on a fresh install of Arch Linux. If you are not please ensure to overwrite all your existing dotfiles with the new ones here. 
 
-    sudo pacman -S ydotool wl-clipboard hyprland xdg-desktop-portal-hyprland socat mpv firefox kitty hyprpaper pcmanfm btop vim dunst pavucontrol pipewire-pulse pipewire wireplumber obs-studio qt5ct kvantum git waybar cmatrix lolcat yadm polkit-kde-agent gimp blender steam libnotify terminus-font
+Please go into your /etc/pacman.conf file and uncomment ParallelDownloads = 5 and add ILoveCandy under it. Also make sure you uncomment the multilib repository. Keep in mind I am leaving out hardware specific packages. So make sure you have already installed your graphics drivers and such. I also use networkmanager and assume you will as well.
+
+    sudo pacman -S ydotool wl-clipboard hyprland xdg-desktop-portal-hyprland \
+    socat mpv firefox kitty hyprpaper pcmanfm btop vim dunst pavucontrol starship \
+    pipewire-pulse pipewire wireplumber obs-studio qt5ct kvantum git waybar lsd \
+    cmatrix lolcat yadm polkit-kde-agent gimp blender steam libnotify terminus-font
     echo FONT=ter-u28n >> /etc/vconsole.conf
     git clone https://aur.archlinux.org/nwg-look.git
     cd nwg-look
     makepkg -si
     cd ..
     rm -rf nwg-look
+    git clone https://aur.archlinux.org/fastfetch.git
+    cd fastfetch
+    makepkg -si
+    cd ..
+    rm -rf fastfetch
     git clone https://aur.archlinux.org/tofi.git
     cd tofi
     makepkg -si
@@ -55,33 +86,56 @@ Please go into your /etc/pacman.conf file and uncomment ParallelDownloads = 5 an
     makepkg -si
     cd ..
     rm -rf webcord
+    rm .bashrc
+    rm .bash_profile
+    rm .profile
     yadm clone -f https://gitlab.com/zaney/dotfiles.git
 
+Once you are done pulling in the dotfiles you should be able to log out and log back in and see your prompt change to the starship prompt. Assuming that has happened your good to go.
 
-# Key Bindings:
+*Just please go ahead and vim into ~/.config/hypr/hyprland.conf and verify the monitor section works for you. It should be safe to just delete all the monitor lines with names and work from there.* 
+
+Then you can just start up Hyprland like so:
+
+    Hyprland
+
+**Please enjoy responsibly**
+
+## Key Bindings:
 
 My list of combinations:
 
-    - Super + HJKL = Move Focus
-    - Super + Shift + HJKL = Move Window
-    - Super + Shift + f = Float Window
-    - Super + Shift + t = Tile Window
-    - Super + Return = Open Kitty
-    - Super + Shift + Return = Open Program Launcher
-    - Super + w = Open Firefox
-    - Super + f = Open File Browser
-    - Super + g = Open Gimp
-    - Super + d = Open Discord
-    - Super + o = Open OBS
-    - Super + e = Custom Emoji Selector Script 
-    - Super + SHIFT + s = Take Screenshot
-    - Volume-Up = Volume +5
-    - Volume-Down = Volume -5
-    - Super + q = Kill Window
-    - Super + Shift + q = Exit
+### Most Important
+- Super + Return = Open Kitty
+- Super + Shift + Return = Open Program Launcher
+- Super + Shift + q = Exit Hyprland
+### Window Management
+- Super + HJKL = Move Focus
+- Super + Shift + HJKL = Move Window
+- Super + Shift + f = Toggle Float Window
+- Super + q = Kill Window
+### Custom Scipts
+- Super + Shift + s = Search Websites
+- Super + Shift + w = Amfora Gemini Browser
+- Super + e = Custom Emoji Selector Script 
+### Application Shortcuts
+- Super + w = Open Firefox
+- Super + f = Open File Browser
+- Super + g = Open Gimp
+- Super + d = Open Webcord
+- Super + o = Open OBS
+- Super + m = Open Rhythmbox
+- Super + s = Take Screenshot
+### OBS Global Hotkeys
+- ALT + F1-5 **(Comment out and configure them in OBS, then uncomment)**
+### System Control
+- Volume-Up = Volume +5
+- Volume-Down = Volume -5
+- Brightness-Up = Brightness +10%
+- Brightness-Down = Brightness -10%
 
 *For those new to tilers or maybe Linux in general, Return is the Enter key & Super is the Windows Key*
 
 ---
 
-*Note for people who are noticing something missing from the past. I have been making videos for a long time & I often like to switch things up. It's a long story, but the dotfiles went unmaintained for quite a while. Then I made this massive change to btrfs, wayland, pipewite, etc. so I decided the dotfiles needed a major clean up. I am sorry if you cannot find something, please feel free to reach out through Discord or Mastadon.*
+*Note for people who are noticing something missing from the past. I have been making videos for a long time & I often like to switch things up. It's a long story, but the dotfiles went unmaintained for quite a while. Then I made this massive change to btrfs, wayland, pipewite, etc. so I decided the dotfiles needed a major clean up. I am sorry if you cannot find something, please feel free to reach out through Discord.*

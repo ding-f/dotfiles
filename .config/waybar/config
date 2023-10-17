@@ -50,7 +50,7 @@
 	},
     "network#wlp62s0": {
         "interval": 1,
-        "interface": "wlp62s0",
+        "interface": "wlp6s0",
         "format-icons": [
             "󰤯",
             "󰤟",
