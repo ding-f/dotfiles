@@ -64,7 +64,8 @@ Please go into your /etc/pacman.conf file and uncomment ParallelDownloads = 5 an
     sudo pacman -S ydotool wl-clipboard hyprland xdg-desktop-portal-hyprland \
     socat mpv firefox kitty hyprpaper pcmanfm btop vim dunst pavucontrol starship \
     pipewire-pulse pipewire wireplumber obs-studio qt5ct kvantum git waybar lsd \
-    cmatrix lolcat yadm polkit-kde-agent gimp blender steam libnotify terminus-font
+    cmatrix lolcat yadm polkit-kde-agent gimp blender steam libnotify terminus-font \
+    lm_sensors pacman-contrib grim slurp 
     echo FONT=ter-u28n >> /etc/vconsole.conf
     git clone https://aur.archlinux.org/nwg-look.git
     cd nwg-look
