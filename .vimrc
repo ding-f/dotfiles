@@ -120,10 +120,3 @@ highlight Pmenu            ctermfg=251      ctermbg=234     cterm=none
 highlight PmenuSel         ctermfg=0        ctermbg=111     cterm=none
 highlight PmenuSbar        ctermfg=206      ctermbg=235     cterm=none
 highlight PmenuThumb       ctermfg=235      ctermbg=206     cterm=none
-
-" use <tab> to trigger completion and navigate to the next complete item
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
