@@ -42,6 +42,8 @@ alias ls="lsd"
 alias ll="lsd -l"
 alias la="lsd -a"
 alias lal="lsd -al"
+alias pacman="sudo pacman"
+alias neofetch="fastfetch"
 alias ..="cd .."
 
 # setup the starship prompt

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-# Arch Method - Requires pacman-contrib package
-PKGCOUNT=$(checkupdates | wc -l)
+# Fix For Multiple Monitors When Using This Script For Modules
+SLPTM=$( echo $RANDOM | cut -b 1 )
+sleep $SLPTM
 
-# Output the package update count
-echo $PKGCOUNT
+# checkupdates is provided by pacman-contrib
+checkupdates | wc -l
