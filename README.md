@@ -3,6 +3,7 @@
 2. [Script Directory](.local/bin)
 3. [Hyprland Config](.config/hypr/hyprland.conf)
 4. [Cursor Theme](.icons/GoogleDot-Blue)
+5. [My Website](https://zaney.org/)
 
 # About My System
 ![](.config/demo.png)
@@ -53,19 +54,21 @@ Shortcuts:
 - Ctrl + f = Toggles NERDtree
 - Press t on a file in NERDtree to open in new tab, s for vertical split
 - Press ii quickly to get to normal mode
+- Highighlight lines with shift + v and press gc to toggle it commented
+- Highlight lines and press zf to fold lines, zo to open fold
 
 ## Full Setup Guide
 Here is all you will need to run after you have installed Arch Linux & log in as your user:
 
-*Please Note:* This is assuming that your doing this on a fresh install of Arch Linux. If you are not please ensure to overwrite all your existing dotfiles with the new ones here. 
+*Please Note:* This is assuming that your doing this on a fresh install of Arch Linux. If you are not please ensure to overwrite all your existing dotfiles with the new ones here. Also I install both Discord and Webcord. With Discord you can't screen share unless you go the OBS Virtual Camera route. With Webcord you can screen share, just it will not detect Virtual Cameras. So it's up to you which one you prefer. I also change the console font to terminus your eyes can thank me later.
 
-Please go into your /etc/pacman.conf file and uncomment ParallelDownloads = 5 and add ILoveCandy under it. Also make sure you uncomment the multilib repository. Keep in mind I am leaving out hardware specific packages. So make sure you have already installed your graphics drivers and such. I also use networkmanager and assume you will as well.
+Please go into your /etc/pacman.conf file and uncomment ParallelDownloads = 5 and add ILoveCandy under it. Also make sure you uncomment the multilib repository. Keep in mind I am leaving out hardware specific packages. So make sure you have already installed your graphics drivers and such.
 
     sudo pacman -S ydotool wl-clipboard hyprland xdg-desktop-portal-hyprland \
     socat mpv firefox kitty hyprpaper pcmanfm btop vim dunst pavucontrol starship \
     pipewire-pulse pipewire wireplumber obs-studio qt5ct kvantum git waybar lsd \
     cmatrix lolcat yadm polkit-kde-agent gimp blender steam libnotify terminus-font \
-    lm_sensors pacman-contrib grim slurp 
+    lm_sensors pacman-contrib grim slurp discord
     echo FONT=ter-u28n >> /etc/vconsole.conf
     git clone https://aur.archlinux.org/nwg-look.git
     cd nwg-look
