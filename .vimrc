@@ -24,6 +24,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'itchyny/lightline.vim'                       " Lightline statusbar
     Plug 'scrooloose/nerdtree'                         " Nerdtree
     Plug 'ryanoasis/vim-devicons'                      " Icons for Nerdtree
+    Plug 'dracula/vim', { 'as': 'dracula' }            " Dracula Color Scheme
     Plug 'tpope/vim-surround'                          " Change surrounding marks
     Plug 'PotatoesMaster/i3-vim-syntax'                " i3 config highlighting
     Plug 'kovetskiy/sxhkd-vim'                         " sxhkd highlighting
@@ -54,6 +55,9 @@ set mouse=a                     " Required
 set encoding=UTF-8              " Set encoding
 let NERDTreeShowHidden=1        " NERDtree shows hidden files
 set term=kitty                  " fix for kitty terminal
+colorscheme dracula             " Dracula Color Scheme
+" get transparent bg & some markdown stuffs
+highlight Normal guibg=NONE ctermbg=NONE
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
