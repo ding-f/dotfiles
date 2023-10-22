@@ -68,7 +68,7 @@ Please go into your /etc/pacman.conf file and uncomment ParallelDownloads = 5 an
     socat mpv firefox kitty hyprpaper pcmanfm btop vim dunst pavucontrol starship \
     pipewire-pulse pipewire wireplumber obs-studio qt5ct kvantum git waybar lsd \
     cmatrix lolcat yadm polkit-kde-agent gimp blender steam libnotify terminus-font \
-    lm_sensors pacman-contrib grim slurp discord
+    lm_sensors pacman-contrib grim slurp discord gnome-keyring seahorse
     echo FONT=ter-u28n >> /etc/vconsole.conf
     git clone https://aur.archlinux.org/nwg-look.git
     cd nwg-look
@@ -85,6 +85,13 @@ Please go into your /etc/pacman.conf file and uncomment ParallelDownloads = 5 an
     makepkg -si
     cd ..
     rm -rf tofi
+    curl -sS https://github.com/GeopJr.gpg | gpg --import -
+    curl -sS https://github.com/web-flow.gpg | gpg --import -
+    git clone https://aur.archlinux.org/tuba.git
+    cd tuba
+    makepkg -si
+    cd ..
+    rm -rf tuba
     git clone https://aur.archlinux.org/webcord.git
     cd webcord
     makepkg -si
