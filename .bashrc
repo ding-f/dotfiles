@@ -4,7 +4,7 @@ case $- in
       *) return;;
 esac
 
-export PATH="$PATH:/usr/local/bin:$HOME/.local/bin:/usr/libexec"
+export PATH="$PATH:/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin"
 export SCRIPTDIR=$HOME/.local/share/scriptdeps
 export MOZ_ENABLE_WAYLAND=1
 export GDK_BACKEND=wayland
@@ -20,7 +20,6 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 export SCRIPTDIR=$HOME/.local/share/scriptdeps
-export PATH=$PATH:$HOME/.local/bin:$HOME/.cargo/bin
 
 # don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth

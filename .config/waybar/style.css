@@ -1,15 +1,32 @@
+/* -----------------------------------------------------
+ * General 
+ * ----------------------------------------------------- */
 * {
-	font-size: 18px;
+	font-size: 16px;
 	font-family: JetBrainsMono Nerd Font;
 }
 
 window#waybar {
-	background: #282a36;
-	color: #f8f8f2;
-    min-height: 30px;
+	background-color: rgba(40, 42, 54, 0.4);
+    border-bottom: 1px solid rgba(40, 42, 55, 0.1);
     border-radius: 0px;
+	color: #f8f8f2;
 }
 
+/* -----------------------------------------------------
+ * Workspaces 
+ * ----------------------------------------------------- */
+#workspaces {
+    background-color: inherit;
+}
+
+#workspaces button:hover {
+    background: inherit;
+}
+
+/* -----------------------------------------------------
+ * Tooltips
+ * ----------------------------------------------------- */
 tooltip {
   background: #282a36;
   border: 1px solid #bd93f9;
@@ -20,26 +37,11 @@ tooltip label {
   color: #f8f8f2;
 }
 
-#workspaces {
-	padding: 4px 10px;
-}
-
-#workspaces button {
-	color: #f8f8f2;
-}
-
-#workspaces button.focused {
-	color: #50fa7b;
-}
-
-#workspaces button:hover {
-	background: #282a36;
-	border: #282a36;
-    color: #bd93f9;
-}
-
+/* -----------------------------------------------------
+ * Window
+ * ----------------------------------------------------- */
 #window {
-    color: #6272a4;
+    color: #f8f8f2;
 	padding: 4px 10px;
 }
 
