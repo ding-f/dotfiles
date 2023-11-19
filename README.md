@@ -57,58 +57,23 @@ Shortcuts:
 - Highighlight lines with shift + v and press gc to toggle it commented
 - Highlight lines and press zf to fold lines, zo to open fold
 
-## Full Setup Guide
-Here is all you will need to run after you have installed Arch Linux & log in as your user:
+## Full Setup Script
+Here is all you will need to run after you have cloned this repo on your Arch installer:
 
-*Please Note:* This is assuming that your doing this on a fresh install of Arch Linux. If you are not please ensure to overwrite all your existing dotfiles with the new ones here. Also I install both Discord and Webcord. With Discord you can't screen share unless you go the OBS Virtual Camera route. With Webcord you can screen share, just it will not detect Virtual Cameras. So it's up to you which one you prefer. I also change the console font to terminus your eyes can thank me later.
+    cd dotfiles
+    cp setup.sh ../
+    cp setup-part2.sh ../
+    cd ..
+    rm -rf dotfiles
+    ./setup.sh
 
-Please go into your /etc/pacman.conf file and uncomment ParallelDownloads = 5 and add ILoveCandy under it. Also make sure you uncomment the multilib repository. Keep in mind I am leaving out hardware specific packages. So make sure you have already installed your graphics drivers and such.
+*Please Note:* This is assuming that you want my install of Arch Linux. My install script is meant for single drive installs, no swap - so no hibernate or sleep, will use fdisk to let you partition your drive, and should work for any hardware config. The script does a good job of walking you through everything. If there are any problems please let me know!
 
-    sudo pacman -S ydotool wl-clipboard hyprland xdg-desktop-portal-hyprland \
-    socat mpv firefox kitty hyprpaper pcmanfm btop vim dunst pavucontrol starship \
-    pipewire-pulse pipewire wireplumber obs-studio qt5ct kvantum git waybar lsd \
-    cmatrix lolcat yadm polkit-kde-agent gimp blender steam libnotify terminus-font \
-    lm_sensors pacman-contrib grim slurp discord gnome-keyring seahorse
-    echo FONT=ter-u28n >> /etc/vconsole.conf
-    git clone https://aur.archlinux.org/nwg-look.git
-    cd nwg-look
-    makepkg -si
-    cd ..
-    rm -rf nwg-look
-    git clone https://aur.archlinux.org/fastfetch.git
-    cd fastfetch
-    makepkg -si
-    cd ..
-    rm -rf fastfetch
-    git clone https://aur.archlinux.org/tofi.git
-    cd tofi
-    makepkg -si
-    cd ..
-    rm -rf tofi
-    curl -sS https://github.com/GeopJr.gpg | gpg --import -
-    curl -sS https://github.com/web-flow.gpg | gpg --import -
-    git clone https://aur.archlinux.org/tuba.git
-    cd tuba
-    makepkg -si
-    cd ..
-    rm -rf tuba
-    git clone https://aur.archlinux.org/webcord.git
-    cd webcord
-    makepkg -si
-    cd ..
-    rm -rf webcord
-    rm .bashrc
-    rm .bash_profile
-    rm .profile
-    yadm clone -f https://gitlab.com/zaney/dotfiles.git
-
-Once you are done pulling in the dotfiles you should be able to log out and log back in and see your prompt change to the starship prompt. Assuming that has happened your good to go.
-
-*Just please go ahead and vim into ~/.config/hypr/hyprland.conf and verify the monitor section works for you. It should be safe to just delete all the monitor lines with names and work from there.* 
+*Just please go ahead and vim into ~/.config/hypr/hyprland.conf and verify the monitor section works for you after reboot. It should be safe to just delete all the monitor lines with names and work from there.* 
 
 Then you can just start up Hyprland like so:
 
-    Hyprland
+    dbus-launch Hyprland
 
 **Please enjoy responsibly**
 
