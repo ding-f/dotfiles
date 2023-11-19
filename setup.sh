@@ -189,7 +189,7 @@ mount -o noatime,compress=zstd:4,space_cache=v2,discard=async,subvol=@home /dev/
 # create a mount point for the EFI partiton
 mkdir /mnt/boot
 
-mount /dev/sda1 /mnt/boot
+mount /dev/$BOOTPART /mnt/boot
 
 echo "
 =================================
