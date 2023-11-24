@@ -48,6 +48,9 @@ alias ..="cd .."
 # setup the starship prompt
 eval "$(starship init bash)"
 
+# give me squirtle in my terminal bish
+squirtle
+
 # enable programmable completion features
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then

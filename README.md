@@ -1,12 +1,12 @@
 # Useful Links
-1. [Theme I Currently Use](https://draculatheme.com/)
+1. [Theme I Currently Use](.themes/Tokyonight-Dark-BL)
 2. [Script Directory](.local/bin)
 3. [Hyprland Config](.config/hypr/hyprland.conf)
-4. [Cursor Theme](.icons/GoogleDot-Blue)
+4. [Cursor Theme](.icons/Bibata-Modern-Ice)
 5. [My Website](https://zaney.org/)
 
 # About My System
-![](.config/demo.png)
+![](Pictures/demo.jpg)
 
 This repository is my personal dotfiles. Dotfiles are the files responsible for customization on your Unix(-like) system. This exists so that anyone can see how I have customized my system. The customization and configuration files on Unix(-like) systems are referred to are dotfiles, because typically they begin with a period.
 
@@ -15,32 +15,32 @@ I currenty run Arch with Hyprland. I couldn't recommend it enough. I am currentl
 I do want to point out that my config was **not** tailored to suit a large number of people originally. However, I have put a lot of work into automating a lot of the setup process if you would like to repliate my system configuration.
 
 ## Programs That I Use
-- [Hyprland](https://hyprland.org/) (Window Manager/Compositor)
-- [Hyprpaper](https://github.com/hyprwm/hyprpaper) (Wallpaper)
-- [tofi](https://github.com/philj56/tofi) (Program Launcher)
-- [kitty](https://github.com/kovidgoyal/kitty) (Terminal)
-- [pcmanfm](https://github.com/lxde/pcmanfm) (File Manager)
+- [hyprland](.config/hypr) (Window Manager/Compositor)
+- [swww](https://github.com/Horus645/swww) (Wallpaper)
+- [tofi](.config/tofi) (Program Launcher)
+- [kitty](.config/kitty) (Terminal)
+- [thunar](https://docs.xfce.org/xfce/thunar/start) (File Manager)
 - [mpv](https://mpv.io/) (Video Player)
 - [firefox](https://www.mozilla.org/en-US/firefox/new/) (Web Browsing)
-- [Webcord](https://github.com/SpacingBat3/WebCord) (Rec Podcasts & Fun)
+- [discord](https://github.com/SpacingBat3/WebCord) (Rec Podcasts & Fun)
 - [kdenlive](https://kdenlive.org/en/) (Video Editing)
-- [btop](https://github.com/aristocratos/btop) (System Monitoring)
-- [vim](https://www.vim.org/) (Text Editor / IDE)
-- [dunst](https://github.com/dunst-project/dunst) (Notifications)
+- [btop](.config/btop) (System Monitoring)
+- [vim](.vimrc) (Text Editor / IDE)
+- [swaync](.config/swaync) (Notifications)
 - [pavucontrol](https://freedesktop.org/software/pulseaudio/pavucontrol/) (Audio Control)
 - [bash](https://www.gnu.org/software/bash/) (Shell)
-- [OBS-Studio](https://obsproject.com/) (Streaming/Recording Software)
-- [Blender](https://www.blender.org/) (3D Modeling)
-- [Steam](https://store.steampowered.com/) (Most Gaming)
+- [obs studio](https://obsproject.com/) (Streaming/Recording Software)
+- [blender](https://www.blender.org/) (3D Modeling)
+- [steam](https://store.steampowered.com/) (Most Gaming)
 - [0 A.D](https://play0ad.com/) (Best Open Source Game)
 - qt5ct,Kvantum,nwg-look (Theming)
 
 ## Features
 
-1. Simple wallpaper that comes with the config can match with many different dark or light colorschemes. It also is high resolution making it fine for any kind of monitor config you throw at it. Not to mention its a sleek, modern, abstract design that just screams beauty.
+1. Great wallpapers that come with the config can match with many different dark or light colorschemes. It also is high resolution making it fine for any kind of monitor config you throw at it. Not to mention its a sleek, modern, cyberpunk aesthetic that just screams beauty.
 2. Using waybar and tofi for the top bar and program launcher gives a sleek full featured user experience with very little performance impact. The bar is setup for laptops with wifi and battery modules, including all that one would expect from a bar. The tofi and waybar configuration is designed to give you a dwm feel without having to patch dwm, dmenu, etc! 😉
 3. Neofetch is a great program, however it can be slow. So this setup includes an alias to the program fastfetch. Which is meant to be a faster alternative to neofetch.
-4. All of the theming comes together with the dotfiles. If you like the theme I use for programs no need to set them all up individually. Besides how could you not love 🧛 Dracula? 
+4. All of the theming comes together with the dotfiles. If you like the theme I use for programs no need to set them all up individually. Besides how could you not love 🧛 Dracula & now 🌆 Tokyonight? 
 5. Many great scripts are included. Like the script for packagecount in the bar, the emoji selection script, and many more. 
 6. Not only do you have great window animations, but the borders for your windows are an animated gradient. 
 
@@ -57,23 +57,15 @@ Shortcuts:
 - Highighlight lines with shift + v and press gc to toggle it commented
 - Highlight lines and press zf to fold lines, zo to open fold
 
-## Full Setup Script
-Here is all you will need to run after you have cloned this repo on your Arch installer:
+## Post Install Script
+Here is all you will need to run after you have cloned this repo on your fresh Arch install:
 
     cd dotfiles
-    cp setup.sh ../
-    cp setup-part2.sh ../
-    cd ..
-    rm -rf dotfiles
     ./setup.sh
 
-*Please Note:* This is assuming that you want my install of Arch Linux. My install script is meant for single drive installs, no swap - so no hibernate or sleep, will use fdisk to let you partition your drive, and should work for any hardware config. The script does a good job of walking you through everything. If there are any problems please let me know!
+*Please Note:* This is assuming that you want my install of Arch Linux. The script does a good job of walking you through everything. If there are any problems please let me know!
 
-*Just please go ahead and vim into ~/.config/hypr/hyprland.conf and verify the monitor section works for you after reboot. It should be safe to just delete all the monitor lines with names and work from there.* 
-
-Then you can just start up Hyprland like so:
-
-    dbus-launch Hyprland
+*Just please go ahead and vim into ~/.config/hypr/hyprland.conf and verify the monitor section works for you before logout or reboot. It should be safe to just delete all the monitor lines with names and work from there.* 
 
 **Please enjoy responsibly**
 
@@ -98,9 +90,9 @@ My list of combinations:
 - Super + w = Open Firefox
 - Super + f = Open File Browser
 - Super + g = Open Gimp
-- Super + d = Open Webcord
+- Super + d = Open Discord
 - Super + o = Open OBS
-- Super + m = Open Rhythmbox
+- Super + m = Open Ario
 - Super + s = Take Screenshot
 ### OBS Global Hotkeys
 - ALT + F1-5 **(Comment out and configure them in OBS, then uncomment)**

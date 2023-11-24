@@ -73,7 +73,7 @@ case $GRAPHICSCARD in
 2)
   pacman -S xf86-video-amdgpu mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau;;
 3)
-  pacman -S nvidia nvidia-utils;;
+  pacman -S nvidia-dkms nvidia-utils;;
 *)
   pacman -S xf86-video-amdgpu mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau;;
 esac

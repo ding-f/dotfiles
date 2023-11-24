@@ -65,16 +65,16 @@
                     "command": "systemctl reboot"
                 },
                 {
-                    "label": "󰌾",
-                    "command": "swaylock-corrupter"
+                    "label": "",
+                    "command": "thunar"
                 },
                 {
-                    "label": "󰍃",
-                    "command": "swaymsg exit"
+                    "label": "",
+                    "command": "pavucontrol"
                 },
                 {
-                    "label": "󰏥",
-                    "command": "systemctl suspend"
+                    "label": "",
+                    "command": "ario"
                 },
                 {
                     "label": "󰕾",
@@ -85,16 +85,16 @@
                     "command": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
                 },
                 {
-                    "label": "󰖩",
-                    "command": "iwgtk"
+                    "label": "",
+                    "command": "steam"
                 },
                 {
-                    "label": "󰂯",
-                    "command": "blueman-manager"
+                    "label": "",
+                    "command": "firefox"
                 },
                 {
                     "label": "",
-                    "command": "kooha"
+                    "command": "obs"
                 }
             ]
         }
