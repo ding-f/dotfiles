@@ -34,6 +34,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'https://github.com/tpope/vim-commentary'     " Comment Out With gcc & Uncomment With gcgc
     Plug 'neoclide/coc.nvim', {'branch': 'release'}    " Code Completion (requires node)
     Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " Markdown Preview
+    Plug 'ghifarit53/tokyonight-vim'                   " Tokyo Night Theme
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -55,7 +56,12 @@ set mouse=a                     " Required
 set encoding=UTF-8              " Set encoding
 let NERDTreeShowHidden=1        " NERDtree shows hidden files
 set term=kitty                  " fix for kitty terminal
-colorscheme dracula             " Dracula Color Scheme
+" colorscheme dracula             " Dracula Color Scheme
+set termguicolors
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 1
+
+colorscheme tokyonight
 " get transparent bg & some markdown stuffs
 highlight Normal guibg=NONE ctermbg=NONE
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
@@ -93,7 +99,7 @@ inoremap <silent><expr> <Tab>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " The lightline.vim theme
 let g:lightline = {
-      \ 'colorscheme': 'darcula',
+      \ 'colorscheme': 'one',
       \ }
 " Always show statusline
 set laststatus=2

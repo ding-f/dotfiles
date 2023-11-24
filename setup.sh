@@ -2,257 +2,148 @@
 
 echo "
 =================================
-= You're Connected To Internet? =
-= Also This Install Is For One, =
-=  Drive,No Swap, & Uses fdisk  =
-=================================
-
-Continue? Yes or No? [y,n,Yes,No]
-"
-
-read INTERNET
-
-case $INTERNET in
-
-  y)
-    echo "
-=================================
-=  Awesome, Let's Get Started   =
-=================================
-
-    "
-    ;;
-
-  Y)
-    echo "
-=================================
-=  Awesome, Let's Get Started   =
-=================================
-
-    "
-    ;;
-
-  Yes)
-    echo "
-=================================
-=  Awesome, Let's Get Started   =
-=================================
-
-    "
-    ;;
-
-  yes)
-    echo "
-=================================
-=  Awesome, Let's Get Started   =
-=================================
-
-    "
-    ;;
-
-  YES)
-    echo "
-=================================
-=  Awesome, Let's Get Started   =
-=================================
-
-    "
-    ;;
-
-  n)
-    echo "
-=================================
-=     Get Connected First!      =
-=================================
-
-    "
-    exit
-    ;;
-
-  N)
-    echo "
-=================================
-=     Get Connected First!      =
-=================================
-
-    "
-    exit
-    ;;
-
-  NO)
-    echo "
-=================================
-=     Get Connected First!      =
-=================================
-
-    "
-    exit
-    ;;
-
-  No)
-    echo "
-=================================
-=     Get Connected First!      =
-=================================
-
-    "
-    exit
-    ;;
-
-  *)
-    echo "
-=================================
-=            What??             =
-=================================
-
-    "
-    exit
-    ;;
-esac
-
-echo "
-=================================
-=      Enabling Time Sync       =
+=     Welcome To My Install     =
+=           Script! 🗒️          =
 =================================
 
 "
 
-timedatectl set-ntp true
-
-echo "
-=================================
-=     Formatting The Drive      =
-=================================
-
-"
-
-lsblk
-echo "
-*ONLY GIVE THE PART AFTER THE /dev/
------------------------------------
-"
-echo "So For /dev/sda It Would Be sda"
-echo "For /dev/nvme0n1, nvme0n1"
-echo "Which Drive Do You Want To Use?"
-read THEDRIVE
-
-fdisk /dev/$THEDRIVE
-
-lsblk
-echo "Which partition is the boot?"
-echo "Same format as before so /dev/sda1 is sda1"
-echo "For /dev/nvme0n1p1 is nvme0n1p1"
-read BOOTPART
-mkfs.fat -F32 /dev/$BOOTPART
-
-lsblk
-echo "Which partition is the root?"
-echo "Same format as before so /dev/sda2 is sda2"
-echo "For /dev/nvme0n1p2 is nvme0n1p2"
-read ROOTPART
-
-echo "
-=================================
-=     Encrypting The Drive      =
-=     &  Creating Snapshots     =
-=================================
-
-"
-
-# Ensure Encryption Stuff Is Ready
-modprobe dm-crypt
-modprobe dm-mod
-
-cryptsetup luksFormat -v -s 512 -h sha512 /dev/$ROOTPART
-cryptsetup luksOpen /dev/$ROOTPART archlinux
-mkfs.btrfs /dev/mapper/archlinux
-mount /dev/mapper/archlinux /mnt
-cd /mnt
-btrfs subvolume create @
-btrfs subvolume create @home
-btrfs subvolume create @snapshots
-cd
-umount /mnt
-
-echo "
-=================================
-=      Mounting Snapshots       =
-=================================
-
-"
-
-mount -o noatime,compress=zstd:4,space_cache=v2,discard=async,subvol=@ /dev/mapper/archlinux /mnt
-# create a mount point for the home directory
-mkdir /mnt/home
-mount -o noatime,compress=zstd:4,space_cache=v2,discard=async,subvol=@home /dev/mapper/archlinux /mnt/home
-
-# create a mount point for the EFI partiton
-mkdir /mnt/boot
-
-mount /dev/$BOOTPART /mnt/boot
-
-echo "
-=================================
-=      Intel or AMD  CPU?       =
-=================================
-
-1) AMD
-2) Intel
-If you enter anything else the
-default option is AMD.
-
-"
-
-read CPUCHOICE
-case $CPUCHOICE in
+echo "Did you choose en_US.UTF-8?"
+echo "As your locale?"
+echo "1) yes"
+echo "2) no"
+echo "Respond with anything else and 1 is selected"
+read LOCALEOPTION
+case $LOCALEOPTION in
 1)
-    echo "
-=================================
-=  Installing Base System Now   =
-=================================
-
-    "
-    pacstrap /mnt base base-devel linux linux-headers linux-firmware sof-firmware networkmanager vim amd-ucode grub efibootmgr btrfs-progs exfatprogs e2fsprogs dosfstools gvfs
+    localectl set-locale LANG="en_US.UTF-8"
+    localectl set-locale LC_TIME="en_US.UTF-8"
+    localectl set-keymap us
   ;;
 2)
-    echo "
-=================================
-=  Installing Base System Now   =
-=================================
-
-    "
-    pacstrap /mnt base base-devel linux linux-headers linux-firmware sof-firmware networkmanager vim intel-ucode grub efibootmgr btrfs-progs exfatprogs e2fsprogs dosfstools gvfs
-  ;;
+    vim /etc/locale.conf;;
 *)
-    echo "
-=================================
-=  Installing Base System Now   =
-=================================
-
-    "
-    pacstrap /mnt base base-devel linux linux-headers linux-firmware sof-firmware networkmanager vim amd-ucode grub efibootmgr btrfs-progs exfatprogs e2fsprogs dosfstools gvfs
+    localectl set-locale LANG="en_US.UTF-8"
+    localectl set-locale LC_TIME="en_US.UTF-8"
+    localectl set-keymap us
   ;;
 esac
 
 echo "
 =================================
-=     Generating The fstab      =
+=         Setup Pacman          =
 =================================
+
+Add whatever you want, I recommend
+ILoveCandy & parrallel downloads
+
+YOU MUST ENABLE MULTILIB
 
 "
 
-genfstab -U /mnt >> /mnt/etc/fstab
+sleep 3
+vim /etc/pacman.conf
 
 echo "
 =================================
-=  Copying Over New Script To   =
-=      /mnt & Chrooting In      =
+=       Update The System       =
 =================================
-
-After the prompt changes all you
-have to do is run ./setup.sh
 
 "
 
-cp setup-part2.sh /mnt/setup.sh
-arch-chroot /mnt
+pacman -Syyu
+
+echo "
+=================================
+=     Which Graphics Card?      =
+=================================
+
+1) Intel
+2) AMD
+3) Nvidia
+Defaults to AMD if you choose
+something else
+
+"
+
+read GRAPHICSCARD
+case $GRAPHICSCARD in
+1)
+  pacman -S xf86-video-intel mesa lib32-mesa lib32-vulkan-intel vulkan-intel;;
+2)
+  pacman -S xf86-video-amdgpu mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau;;
+3)
+  pacman -S nvidia nvidia-utils;;
+*)
+  pacman -S xf86-video-amdgpu mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau;;
+esac
+
+echo "
+=================================
+=      Installing Packages      =
+=           & Dotfiles          =
+=================================
+
+"
+
+sudo pacman -S ydotool wl-clipboard hyprland xdg-desktop-portal-hyprland vivaldi \
+socat mpv firefox kitty thunar btop vim pavucontrol starship \
+pipewire-pulse pipewire wireplumber obs-studio qt5ct kvantum git waybar lsd \
+cmatrix lolcat yadm polkit-gnome gimp blender steam libnotify terminus-font \
+lm_sensors pacman-contrib grim slurp discord virt-manager v4l2loopback-dkms \
+v4l2loopback-utils v4l-utils unzip unrar xarchiver bash-completion qemu \
+audacity mpd ario
+git clone https://aur.archlinux.org/nwg-look.git
+cd nwg-look
+makepkg -si
+cd ..
+rm -rf nwg-look
+git clone https://aur.archlinux.org/swaync.git
+cd swaync
+makepkg -si
+cd ..
+rm -rf swaync
+git clone https://aur.archlinux.org/swww.git
+cd swww
+makepkg -si
+cd ..
+rm -rf swww
+git clone https://aur.archlinux.org/fastfetch.git
+cd fastfetch
+makepkg -si
+cd ..
+rm -rf fastfetch
+git clone https://aur.archlinux.org/tofi.git
+cd tofi
+makepkg -si
+cd ..
+rm -rf tofi
+cd /home/$USERSNAME
+rm .bashrc
+rm .bash_profile
+rm .profile
+yadm clone -f https://gitlab.com/zaney/dotfiles.git
+cd
+
+echo "
+=================================
+=       Starting Services       =
+=================================
+
+"
+
+sudo systemctl enable libvirtd.service
+sudo systemctl enable libvirtd.socket
+sudo systemctl start libvirtd.service
+sudo systemctl start virtlogd.service
+sudo usermod -aG libvirt $USER
+sudo sh -c "echo 'FONT=ter-u28n' >> /etc/vconsole.conf"
+
+echo "
+=================================
+=        You're All Set!        =
+=================================
+
+Thank you for using my script!
+
+"
