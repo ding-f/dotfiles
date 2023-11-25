@@ -118,7 +118,7 @@ cd tofi
 makepkg -si
 cd ..
 rm -rf tofi
-cd /home/$USERSNAME
+cd /home/$USER
 rm .bashrc
 rm .bash_profile
 rm .profile
