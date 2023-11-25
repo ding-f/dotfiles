@@ -21,7 +21,7 @@ case $LOCALEOPTION in
     localectl set-keymap us
   ;;
 2)
-    vim /etc/locale.conf;;
+    sudo vim /etc/locale.conf;;
 *)
     localectl set-locale LANG="en_US.UTF-8"
     localectl set-locale LC_TIME="en_US.UTF-8"
@@ -42,7 +42,7 @@ YOU MUST ENABLE MULTILIB
 "
 
 sleep 3
-vim /etc/pacman.conf
+sudo vim /etc/pacman.conf
 
 echo "
 =================================
@@ -51,7 +51,7 @@ echo "
 
 "
 
-pacman -Syyu
+sudo pacman -Syyu
 
 echo "
 =================================
