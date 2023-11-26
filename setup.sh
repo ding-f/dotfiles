@@ -64,13 +64,13 @@ something else
 read GRAPHICSCARD
 case $GRAPHICSCARD in
 1)
-  pacman -S xf86-video-intel mesa lib32-mesa lib32-vulkan-intel vulkan-intel;;
+  sudo pacman -S xf86-video-intel mesa lib32-mesa lib32-vulkan-intel vulkan-intel;;
 2)
-  pacman -S xf86-video-amdgpu mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau;;
+  sudo pacman -S xf86-video-amdgpu mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau;;
 3)
-  pacman -S nvidia-dkms nvidia-utils;;
+  sudo pacman -S nvidia-dkms nvidia-utils;;
 *)
-  pacman -S xf86-video-amdgpu mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau;;
+  sudo pacman -S xf86-video-amdgpu mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau;;
 esac
 
 echo "
@@ -82,7 +82,7 @@ echo "
 "
 
 sudo pacman -S ydotool wl-clipboard hyprland xdg-desktop-portal-hyprland vivaldi \
-socat mpv firefox kitty thunar btop vim pavucontrol starship \
+socat mpv firefox kitty thunar btop vim pavucontrol starship cowsay fortune \
 pipewire-pulse pipewire wireplumber obs-studio qt5ct kvantum git waybar lsd \
 cmatrix lolcat yadm polkit-gnome gimp blender steam libnotify terminus-font \
 lm_sensors pacman-contrib grim slurp discord virt-manager v4l2loopback-dkms \
