@@ -34,15 +34,10 @@ echo "
 =         Setup Pacman          =
 =================================
 
-Add whatever you want, I recommend
-ILoveCandy & parrallel downloads
-
-YOU MUST ENABLE MULTILIB
-
 "
 
-sleep 3
-sudo vim /etc/pacman.conf
+sudo rm /etc/pacman.conf
+sudo cp .config/pacman.conf /etc/pacman.conf
 
 echo "
 =================================
@@ -92,7 +87,7 @@ pipewire-pulse pipewire wireplumber obs-studio qt5ct kvantum git waybar lsd \
 cmatrix lolcat yadm polkit-gnome gimp blender steam libnotify terminus-font \
 lm_sensors pacman-contrib grim slurp discord virt-manager v4l2loopback-dkms \
 v4l2loopback-utils v4l-utils unzip unrar xarchiver bash-completion qemu \
-audacity mpd ario
+audacity mpd ario 0ad supertuxkart xonotic openra
 git clone https://aur.archlinux.org/nwg-look.git
 cd nwg-look
 makepkg -si
@@ -118,7 +113,7 @@ cd tofi
 makepkg -si
 cd ..
 rm -rf tofi
-cd /home/$USER
+cd ~
 rm .bashrc
 rm .bash_profile
 rm .profile
@@ -132,11 +127,11 @@ echo "
 
 "
 
+sudo usermod -aG libvirt $USER
 sudo systemctl enable libvirtd.service
 sudo systemctl enable libvirtd.socket
 sudo systemctl start libvirtd.service
 sudo systemctl start virtlogd.service
-sudo usermod -aG libvirt $USER
 sudo sh -c "echo 'FONT=ter-u28n' >> /etc/vconsole.conf"
 
 echo "
@@ -145,5 +140,8 @@ echo "
 =================================
 
 Thank you for using my script!
+
+MAKE SURE TO EDIT Hyprland's CONFIG
+FILES MONITOR SECTION
 
 "

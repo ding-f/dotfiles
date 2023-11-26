@@ -76,7 +76,7 @@ My list of combinations:
 ### Most Important
 - Super + Return = Open Kitty
 - Super + Shift + Return = Open Program Launcher
-- Super + Shift + q = Exit Hyprland
+- Super + Shift + c = Exit Hyprland
 ### Window Management
 - Super + HJKL = Move Focus
 - Super + Shift + HJKL = Move Window
