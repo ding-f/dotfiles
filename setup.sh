@@ -2,35 +2,6 @@
 
 echo "
 =================================
-=     Welcome To My Install     =
-=           Script! 🗒️          =
-=================================
-
-"
-
-echo "Did you choose en_US.UTF-8?"
-echo "As your locale?"
-echo "1) yes"
-echo "2) no"
-echo "Respond with anything else and 1 is selected"
-read LOCALEOPTION
-case $LOCALEOPTION in
-1)
-    localectl set-locale LANG="en_US.UTF-8"
-    localectl set-locale LC_TIME="en_US.UTF-8"
-    localectl set-keymap us
-  ;;
-2)
-    sudo vim /etc/locale.conf;;
-*)
-    localectl set-locale LANG="en_US.UTF-8"
-    localectl set-locale LC_TIME="en_US.UTF-8"
-    localectl set-keymap us
-  ;;
-esac
-
-echo "
-=================================
 =         Setup Pacman          =
 =================================
 
@@ -46,7 +17,7 @@ echo "
 
 "
 
-sudo pacman -Syyu
+sudo pacman -Syyu --noconfirm
 
 echo "
 =================================
@@ -64,13 +35,13 @@ something else
 read GRAPHICSCARD
 case $GRAPHICSCARD in
 1)
-  sudo pacman -S xf86-video-intel mesa lib32-mesa lib32-vulkan-intel vulkan-intel;;
+  sudo pacman -S --noconfirm xf86-video-intel mesa lib32-mesa lib32-vulkan-intel vulkan-intel;;
 2)
-  sudo pacman -S xf86-video-amdgpu mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau;;
+  sudo pacman -S --noconfirm xf86-video-amdgpu mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau;;
 3)
-  sudo pacman -S nvidia-dkms nvidia-utils;;
+  sudo pacman -S --noconfirm nvidia-dkms nvidia-utils;;
 *)
-  sudo pacman -S xf86-video-amdgpu mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau;;
+  sudo pacman -S --noconfirm xf86-video-amdgpu mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau;;
 esac
 
 echo "
@@ -81,44 +52,43 @@ echo "
 
 "
 
-sudo pacman -S ydotool wl-clipboard hyprland xdg-desktop-portal-hyprland vivaldi \
+sudo pacman -S --noconfirm ydotool wl-clipboard hyprland xdg-desktop-portal-hyprland vivaldi \
 socat mpv firefox kitty thunar btop vim pavucontrol starship cowsay fortune \
 pipewire-pulse pipewire wireplumber obs-studio qt5ct kvantum git waybar lsd \
 cmatrix lolcat yadm polkit-gnome gimp blender steam libnotify terminus-font \
 lm_sensors pacman-contrib grim slurp discord virt-manager v4l2loopback-dkms \
-v4l2loopback-utils v4l-utils unzip unrar xarchiver bash-completion qemu \
+v4l2loopback-utils v4l-utils unzip unrar xarchiver bash-completion qemu-full \
 audacity mpd ario 0ad supertuxkart xonotic openra
 git clone https://aur.archlinux.org/nwg-look.git
 cd nwg-look
-makepkg -si
+makepkg -si --noconfirm
 cd ..
 rm -rf nwg-look
 git clone https://aur.archlinux.org/swaync.git
 cd swaync
-makepkg -si
+makepkg -si --noconfirm
 cd ..
 rm -rf swaync
 git clone https://aur.archlinux.org/swww.git
 cd swww
-makepkg -si
+makepkg -si --noconfirm
 cd ..
 rm -rf swww
 git clone https://aur.archlinux.org/fastfetch.git
 cd fastfetch
-makepkg -si
+makepkg -si --noconfirm
 cd ..
 rm -rf fastfetch
 git clone https://aur.archlinux.org/tofi.git
 cd tofi
-makepkg -si
+makepkg -si --noconfirm
 cd ..
 rm -rf tofi
-cd ~
+cd ..
 rm .bashrc
 rm .bash_profile
 rm .profile
-yadm clone -f https://gitlab.com/zaney/dotfiles.git
-cd
+yadm clone https://gitlab.com/zaney/dotfiles.git
 
 echo "
 =================================
