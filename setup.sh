@@ -52,7 +52,7 @@ echo "
 
 "
 
-sudo pacman -S --noconfirm ydotool wl-clipboard hyprland xdg-desktop-portal-hyprland vivaldi socat mpv firefox kitty thunar btop vim pavucontrol starship cowsay fortune pipewire-pulse pipewire wireplumber obs-studio qt5ct kvantum git waybar lsd cmatrix lolcat yadm polkit-gnome gimp blender steam libnotify terminus-font lm_sensors pacman-contrib grim slurp discord virt-manager v4l2loopback-dkms v4l2loopback-utils v4l-utils unzip unrar xarchiver bash-completion qemu-full audacity mpd ario 0ad supertuxkart xonotic openra libvirt
+sudo pacman -S --noconfirm ydotool wl-clipboard hyprland xdg-desktop-portal-hyprland vivaldi socat mpv firefox kitty thunar btop vim pavucontrol starship cowsay pipewire-pulse pipewire wireplumber obs-studio qt5ct kvantum git waybar lsd cmatrix lolcat yadm polkit-gnome gimp blender steam libnotify terminus-font lm_sensors pacman-contrib grim slurp discord virt-manager v4l2loopback-dkms v4l2loopback-utils v4l-utils unzip unrar xarchiver bash-completion qemu-full audacity mpd ario 0ad supertuxkart xonotic openra libvirt
 git clone https://aur.archlinux.org/nwg-look.git
 cd nwg-look
 makepkg -si --noconfirm
