@@ -68,8 +68,8 @@
         "tooltip": false,
     },
 	"tray": {
-		//"icon-size": 20,
-		"spacing": 8
+		//"icon-size": 24,
+		"spacing": 12
 	},
     "pulseaudio": {
         "format": "{icon} {volume}% {format_source}",

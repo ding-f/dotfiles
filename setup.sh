@@ -9,6 +9,11 @@ echo "
 
 sudo rm /etc/pacman.conf
 sudo cp .config/pacman.conf /etc/pacman.conf
+sudo mkdir /etc/ly
+sudo cp .config/ly/config.ini /etc/ly/config.ini
+sudo mkdir /usr/share/wayland-sessions
+sudo cp .local/share/wayland-sessions/hyprland.desktop /usr/share/wayland-sessions
+sudo cp .config/dayz.conf /etc/sysctl.d/
 
 echo "
 =================================
@@ -52,7 +57,7 @@ echo "
 
 "
 
-sudo pacman -S --noconfirm ydotool wl-clipboard hyprland xdg-desktop-portal-hyprland vivaldi socat mpv firefox kitty thunar btop vim pavucontrol starship cowsay pipewire-pulse pipewire wireplumber obs-studio qt5ct kvantum git waybar lsd cmatrix lolcat yadm polkit-gnome gimp blender steam libnotify terminus-font lm_sensors pacman-contrib grim slurp discord virt-manager v4l2loopback-dkms v4l2loopback-utils v4l-utils unzip unrar xarchiver bash-completion qemu-full audacity mpd ario 0ad supertuxkart xonotic openra libvirt
+sudo pacman -S --noconfirm ydotool wl-clipboard hyprland xdg-desktop-portal-hyprland vivaldi socat mpv firefox kitty thunar btop vim pavucontrol starship cowsay pipewire-pulse pipewire wireplumber obs-studio qt5ct kvantum git waybar lsd cmatrix lolcat yadm polkit-gnome gimp blender steam libnotify terminus-font lm_sensors pacman-contrib grim slurp discord virt-manager v4l2loopback-dkms linux-headers v4l2loopback-utils v4l-utils unzip unrar xarchiver bash-completion qemu-full audacity mpd ario 0ad supertuxkart xonotic openra libvirt kdenlive ly hugo go
 git clone https://aur.archlinux.org/nwg-look.git
 cd nwg-look
 makepkg -si --noconfirm
@@ -96,6 +101,7 @@ sudo systemctl enable libvirtd.service
 sudo systemctl enable libvirtd.socket
 sudo systemctl start libvirtd.service
 sudo systemctl start virtlogd.service
+sudo systemctl enable ly.service
 sudo sh -c "echo 'FONT=ter-u28n' >> /etc/vconsole.conf"
 
 echo "

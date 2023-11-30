@@ -12,7 +12,7 @@ This repository is my personal dotfiles. Dotfiles are the files responsible for 
 
 I currenty run Arch with Hyprland. I couldn't recommend it enough. I am currently using this setup on my laptop (Intel OEM Whitebook) & Ryzen desktop.
 
-I do want to point out that my config was **not** tailored to suit a large number of people originally. However, I have put a lot of work into automating a lot of the setup process if you would like to repliate my system configuration.
+I do want to point out that my config was **not** tailored to suit a large number of people originally. However, I have put a lot of work into automating a lot of the setup process if you would like to replicate my system configuration.
 
 ## Programs That I Use
 - [hyprland](.config/hypr) (Window Manager/Compositor)
