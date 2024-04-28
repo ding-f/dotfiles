@@ -12,7 +12,7 @@ sudo cp .config/pacman.conf /etc/pacman.conf
 sudo mkdir /etc/ly
 sudo cp .config/ly/config.ini /etc/ly/config.ini
 sudo mkdir /usr/share/wayland-sessions
-sudo cp .local/share/wayland-sessions/hyprland.desktop /usr/share/wayland-sessions
+# sudo cp .local/share/wayland-sessions/hyprland.desktop /usr/share/wayland-sessions
 sudo cp .config/dayz.conf /etc/sysctl.d/
 
 echo "
