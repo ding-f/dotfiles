@@ -3,34 +3,32 @@
 	"position": "top",
 
 	"modules-left": [
-		"hyprland/workspaces"
+        "battery",
+		"disk",
+		"memory",
+        "cpu"
+        
 	],
 	"modules-center": [
+        "hyprland/workspaces"
 	],
 	"modules-right": [
-        "custom/packages",
-		"cpu",
-		"memory",
-		"disk",
+        // "custom/packages",
         "network#wifi",
-        "battery",
+        "clock",
         "pulseaudio",
-		"clock",
 		"tray",
         "custom/notification"
 	],
     "hyprland/workspaces": {
         "format": "{icon}",
         "format-icons": {
-            "default": " ",
-            "active": " ",
-            "urgent": " "
-            /* "default": "", */
-            /* "active": "", */
-            /* "urgent": "" */
+             "default": "", 
+             "active": "", 
+             "urgent": "" 
 	    },
         "on-scroll-up": "hyprctl dispatch workspace e+1",
-        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1"
     },
 	"clock": {
         "format": " {:%I:%M %p}",
@@ -60,12 +58,12 @@
 	},
     "network#wifi": {
         "interval": 1,
-        "interface": "wlp6s0",
+        "interface": "wlan0",
         //"interface": "wlp62s0",
         "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
         "format-wifi": "{icon} {signalStrength}%",
         "format-disconnected": "󰤮",
-        "tooltip": false,
+        "tooltip": false
     },
 	"tray": {
 		//"icon-size": 24,
